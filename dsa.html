@@ -1,0 +1,44 @@
+<table border="1px">
+<tr>
+	<td>1<input></td>
+	<td>2</td>
+	<td>3</td>
+</tr>
+<tr>
+	<td>4</td>
+	<td>5 </td>
+	<td>6 </td>
+</tr>
+<tr>
+	<td>7</td>
+	<td>8</td>
+	<td>9</td>
+</tr>
+</table>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+<script type="text/javascript">
+$(function()	{
+	$('td').click(function(e)	{
+		//ловим элемент, по которому кликнули
+		var t = e.target || e.srcElement;
+		//получаем название тега
+		var elm_name = t.tagName.toLowerCase();
+		//если это инпут - ничего не делаем
+		if(elm_name == 'input')	{return false;}
+		var val = $(this).html();
+		var code = '<input type="text" id="edit" value="'+val+'" />';
+		$(this).empty().append(code);
+		$('#edit').focus();
+		$('#edit').blur(function()	{
+			var val = $(this).val();
+			$(this).parent().empty().html(val);
+		});
+	});
+});
+$(window).keydown(function(event){
+	//ловим событие нажатия клавиши
+	if(event.keyCode == 13) {	//если это Enter
+		$('#edit').blur();	//снимаем фокус с поля ввода
+	}
+});
+</script>
