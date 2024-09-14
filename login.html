@@ -1,14 +1,93 @@
 <style>
-  #main {
-    width: 100%;
-    padding:20px;
-    text-align:center;
-
-  }
+    body
+    {
+        font-weight:200px;
+        color:var(--tg-theme-text-color);
+        background:var(--tg-theme-bg-color);
+    }
+    
+    form
+    {
+        text-align:center;
+    }
+    
+    input
+    {
+        width:90%;
+        height:5%;
+        outline:none;
+        margin:30px 5%;
+        padding:15px 20px;
+        font-size:28px;
+        border:2px solid silver;
+        border-radius:16px;
+        background:var(--tg-theme-bg-color);
+    }
+    
+    input:focus
+    {
+        border-color:#db5d5d;
+    }
+    
+    p
+    {
+        color:white;
+        font-size:60;
+    }
+    
+    button
+    {
+        border:0;
+        border-radius: 16px;
+        margin-top: 50px;
+        height: 100px;
+        width: 500px;
+        font-size: 40px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 500ms ease;
+        color: var(-- tg-theme-button-color);
+        background: var(-- tg-theme-button-text-color);
+    }
+    button: hover 
+    {
+        background: var(-- tg-theme-secondary-bg-color);
+    ｝
 </style>
-<head><link rel="shortcut icon" href="../image/lps.png" type="image/x-icon"> 
-<title>LPS</title>
-
-<body id='main' style="background-image:url(image/fonlps.png);">
-  <h1>ruslan pidr</h1>
+<body>
+    <form>
+        <p>Заполни инфу о себе</p>
+    <input type="text" placeholder="имя" id="Name">
+    <input type="text" placeholder="возраст" id="Age">
+    <input type="text" placeholder="хобби/интересы" id="Hobby">
+    <input type="text" placeholder="семейное положение" id="SP">
+    <input type="text" placeholder="инст/тг канал без @" id="chanel">
+    <input type="text" placeholder="откуда ты? (метро)" id="metro ">
+    <button id="send">Отправить</button>
+    </form>
+   <script src="https://telegram.org/js/telegram-web-app.js"></script>
+      <script>
+        let tg = window.telegram.WebApp;
+        let send = document.getElementById("send");
+        
+        send.addEventListener("click", () => {
+            let name = document.getElementById("Name").value;
+            let Age = document.getElementById("Age").value;
+            let Hobby = document.getElementById("Hobby").value;
+            let SP = document.getElementById("SP").value;
+            let chanel = document.getElementById("chanel").value;
+            let metro = document.getElementById("metro").value;
+            let data = {
+                name:name,
+                Age:Age,
+                Hobby:Hobby,
+                SP:SP,
+                chanel:chanel,
+                metro:metro
+            }
+            tg.sendData(JSON.stringify(data));
+            tg.close();
+        });
+    </script>
+   
 </body>
